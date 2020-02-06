@@ -1,16 +1,15 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Person(models.Model):
     name = models.CharField('Имя', max_length=30)
     sourname = models.CharField('Фамилия', max_length=40)
     middlename = models.CharField('Отчество', max_length=40)
-    login = models.CharField('Логин', max_length=15, unique=True)
-    password = models.CharField('Пароль', max_length=15)
-
+    lol = models.OneToOneField(User, on_delete=models.CASCADE,null=True)
 
     def __str__(self):
-        return self.login
+        return self.name
 
     class Meta:
         verbose_name = 'Логин'
@@ -58,10 +57,8 @@ class RecommendArticle(models.Model):
     Author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
 
-
-
 class Query(models.Model):
-    findQuery = models.ForeignKey(Person, on_delete=models.CASCADE, default=0,related_name="Person")
+    findQuery = models.ForeignKey(Person, on_delete=models.CASCADE, default=0, related_name="Person")
     ResultOfQuery = models.ForeignKey(RecommendArticle, on_delete=models.CASCADE)
 
     def __str__(self):

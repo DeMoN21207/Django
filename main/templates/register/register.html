@@ -1,40 +1,27 @@
 {% extends 'base.html'%}
 {%load static%}
 {%block title%}Регистрация{%endblock%}
-{%block style%}<link rel="stylesheet" href="{% static 'css\RegisterStyle.css'%}">{%endblock%}
+{%block style%}
+<link rel="stylesheet" href="{% static 'css\RegisterStyle.css'%}">{%endblock%}
 {%block content%}
 <div class="signup-form">
     <form action="#" method="post">
         {% csrf_token%}
         <h2>Регистрация</h2>
         <p>Заполните форму для создания аккаунта!</p>
-        <hr>
+
+            {%for k in form%}
         <div class="form-group">
-            <div><input type="text" class="form-control" name="first_name" placeholder="Имя" required="required"></div>
-        </div>
-        <div class="form-group">
-            <div><input type="text" class="form-control" name="last_name" placeholder="Фамилия" required="required">
-            </div>
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control" name="middle_name" placeholder="Отчество" required="required">
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control" name="login" placeholder="Логин" required="required">
-        </div>
-        <div class="form-group">
-            <input type="email" class="form-control" name="email" placeholder="Электронная почта" required="required">
-        </div>
-        <div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="Пароль" required="required">
-        </div>
-        <div class="form-group">
-            <input type="password" class="form-control" name="confirm_password" placeholder="Подтвердите пароль"
-                   required="required">
-        </div>
-        <div class="form-group">
-            <button type="button" class="btn btn-primary btn-lg">Зарегистрироваться</button>
-        </div>
+            <div>{{k}}</div>
+              </div>
+            {%endfor%}
+
+
+         <hr>
+
+         <div class="form-group">
+             <button type="button" class="btn btn-primary btn-lg">Зарегистрироваться</button>
+         </div>
     </form>
     <div class="hint-text" style="color: white">Уже есть аккаунт? <a style="color: #bd2130" href="auth">Жми сюда</a>
     </div>
